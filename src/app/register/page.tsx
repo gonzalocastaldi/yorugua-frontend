@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -108,9 +109,9 @@ export default function Register() {
               {isLoading ? "Registrando..." : "Registrarse"}
             </button>
             <div className="text-center mt-4">
-              <a href="/" className="text-white text-sm hover:underline">
+              <Link href="/" className="text-white text-sm hover:underline">
                 ¿Ya tienes cuenta? Iniciar sesión
-              </a>
+              </Link>
             </div>
           </form>
         </div>
