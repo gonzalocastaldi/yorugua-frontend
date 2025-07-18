@@ -24,8 +24,3 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* Estilos adicionales para el formulario */
-.backdrop-blur-sm {
-  backdrop-filter: blur(8px);
-}
