@@ -28,7 +28,7 @@ export default function Register() {
     setError("");
     setSuccess("");
     try {
-      const response = await fetch("https://yorugua-backend-production.up.railway.app/api/v1/users/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
