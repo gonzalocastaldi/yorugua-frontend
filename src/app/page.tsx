@@ -72,7 +72,7 @@ export default function Login() {
       
       {/* Logo centrado */}
       <div className="relative z-10 text-center py-8">
-        <h1 className="text-white text-5xl font-bold" style={{ verticalAlign: "100px" }}>
+        <h1 className="text-white text-5xl font-bold mt-28">
           Yorugua<span className="text-blue-400">.uy</span>
         </h1>
       </div>
