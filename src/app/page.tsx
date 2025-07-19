@@ -52,8 +52,14 @@ export default function Login() {
         setError(data.message || "Error al iniciar sesión");
       }
     } catch (error) {
-      console.error("Error:", error);
-      setError("Error de conexión. Intenta nuevamente.");
+      const status = (error as any)?.response?.status;
+      const errorMessage = error instanceof Error ? error.message : "Error de conexión. Intenta nuevamente.";
+      if (status) {
+        setError(`Error (${status}): ${errorMessage}`);
+      } else {
+        setError("Error: " + errorMessage);
+      }
+      setError("Error: " + errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -72,8 +78,8 @@ export default function Login() {
       
       {/* Logo centrado */}
       <div className="relative z-10 text-center py-8">
-        <h1 className="text-white text-5xl font-bold mt-28">
-          Yorugua<span className="text-blue-400">.uy</span>
+        <h1 className="text-white text-8xl font-bold mt-28">
+          Yorugua<span className="text-blue-400 font-normal">.uy</span>
         </h1>
       </div>
 
@@ -118,7 +124,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-300 text-white font-semibold py-3 px-6 rounded-full transition-colors mt-6"
+              className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-300 text-white font-semibold py-3 px-6 rounded-full transition-colors mt-6 cursor-pointer disabled:cursor-not-allowed"
             >
               {isLoading ? "Ingresando..." : "Ingresar"}
             </button>
