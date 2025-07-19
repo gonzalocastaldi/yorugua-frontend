@@ -52,10 +52,10 @@ export default function Login() {
         setError(data.message || "Error al iniciar sesión");
       }
     } catch (error) {
-      const status = (error as any)?.response?.status;
+      const err = error as { response?: { status?: number } };
       const errorMessage = error instanceof Error ? error.message : "Error de conexión. Intenta nuevamente.";
-      if (status) {
-        setError(`Error (${status}): ${errorMessage}`);
+      if (err.response?.status) {
+        setError(`Error (${err.response.status}): ${errorMessage}`);
       } else {
         setError("Error: " + errorMessage);
       }
