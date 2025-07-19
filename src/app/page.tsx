@@ -72,18 +72,15 @@ export default function Login() {
         backgroundImage: "url('/stadium-background.jpg')"
       }}
     >
-      {/* Overlay oscuro */}
       <div className="absolute inset-0 bg-black/50"></div>
       
       
-      {/* Logo centrado */}
       <div className="relative z-10 text-center py-8">
         <h1 className="text-white text-8xl font-bold mt-28">
           Yorugua<span className="text-blue-400 font-normal">.uy</span>
         </h1>
       </div>
 
-      {/* Formulario de login */}
       <div className="relative z-10 flex items-center justify-center px-4">
         <div className="rounded-lg p-8 w-full max-w-md" style={{ backgroundColor: "#122B39", opacity: 0.8 }}>
           <h2 className="text-white text-2xl font-semibold text-center mb-6">
