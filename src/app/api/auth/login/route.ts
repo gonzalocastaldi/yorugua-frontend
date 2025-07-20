@@ -4,8 +4,7 @@ export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
 
-    // Aquí llamas a tu API externa o base de datos
-    const response = await fetch("https://tu-api-backend.com/api/login", {
+    const response = await fetch("https://yorugua-backend-production.up.railway.app/api/v1/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,14 +18,12 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     if (response.ok) {
-      // Login exitoso
       return NextResponse.json({
         message: "Login exitoso",
         token: data.token,
         user: data.user,
       });
     } else {
-      // Error en el login
       return NextResponse.json(
         { message: data.message || "Credenciales inválidas" },
         { status: 401 }
