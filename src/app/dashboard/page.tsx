@@ -47,7 +47,7 @@ export default function Dashboard() {
       <div className="relative z-10 flex items-center justify-center px-4">
         <ul className="flex items-center space-x-10">
           <li>
-        <a href="#" className="hover:text-blue-400 transition tracking-[0.1em]">Mi equipo</a>
+        <a href="/myTeam" className="hover:text-blue-400 transition tracking-[0.1em]">Mi equipo</a>
           </li>
           <li>|</li>
           <li>
@@ -67,7 +67,7 @@ export default function Dashboard() {
           </li>
           <li>|</li>
           <li>
-        <a onClick={handleLogout} className="hover:text-blue-400 transition tracking-[0.1em] cursor-pointer">Cerrar sesión</a>
+        <a onClick={handleLogout} className="hover:text-red-400 transition tracking-[0.1em] cursor-pointer">Cerrar sesión</a>
           </li>
         </ul>
       </div>
