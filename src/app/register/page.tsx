@@ -7,7 +7,8 @@ import Link from "next/link";
 export default function Register() {
   const [formData, setFormData] = useState({
     usuario: "",
-    contraseña: ""
+    contraseña: "",
+    confirmarcontraseña: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -28,6 +29,17 @@ export default function Register() {
     setError("");
     setSuccess("");
     try {
+      if (formData.contraseña !== formData.confirmarcontraseña) {
+        setError("Las contraseñas no coinciden");
+        setIsLoading(false);
+        return;
+      }
+      const isValidPassword = /^(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?=.*[A-Za-z]).{8,}$/.test(formData.contraseña);
+      if (!isValidPassword) {
+        setError("La contraseña debe tener al menos 8 caracteres, un número y un carácter especial.");
+        setIsLoading(false);
+        return;
+      }
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
@@ -35,10 +47,11 @@ export default function Register() {
         },
         body: JSON.stringify({
           username: formData.usuario,
-          password: formData.contraseña,
+          password: formData.contraseña
         }),
       });
       const data = await response.json();
+      console.log("Response:", response);
       if (response.ok) {
         setSuccess("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => router.push("/"), 1500);
@@ -101,10 +114,21 @@ export default function Register() {
                 className="w-full px-4 py-3 bg-transparent border-b-2 border-gray-400 text-white placeholder-gray-300 focus:border-white focus:outline-none transition-colors"
               />
             </div>
+            <div>
+              <input
+                type="password"
+                name="confirmarcontraseña"
+                placeholder="Confirmar contraseña"
+                value={formData.confirmarcontraseña}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 bg-transparent border-b-2 border-gray-400 text-white placeholder-gray-300 focus:border-white focus:outline-none transition-colors"
+              />
+            </div>
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white font-semibold py-3 px-6 rounded-full transition-colors mt-6"
+              className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white font-semibold py-3 px-6 rounded-full transition-colors mt-6 cursor-pointer"
             >
               {isLoading ? "Registrando..." : "Registrarse"}
             </button>
