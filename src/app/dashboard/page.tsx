@@ -65,6 +65,10 @@ export default function Dashboard() {
           <li>
         <a href="#" className="hover:text-blue-400 transition tracking-[0.1em]">Mi cuenta / Configuración</a>
           </li>
+          <li>|</li>
+          <li>
+        <a onClick={handleLogout} className="hover:text-blue-400 transition tracking-[0.1em] cursor-pointer">Cerrar sesión</a>
+          </li>
         </ul>
       </div>
     </div>
