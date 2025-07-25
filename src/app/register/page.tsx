@@ -51,10 +51,6 @@ export default function Register() {
         }),
       });
       const data = await response.json();
-      console.log("Response:", response);
-      console.log("Response data:", data);
-      console.log("Response ok:", response.ok);
-      console.log("Response status:", response.status);
       if (response.ok) {
         setSuccess("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => router.push("/"), 1500);
