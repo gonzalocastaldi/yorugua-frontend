@@ -18,10 +18,10 @@ export async function POST(request: NextRequest) {
     });
 
     let data;
+    const textData = await response.text();
     try {
-      data = await response.json();
+      data = JSON.parse(textData);
     } catch (jsonError) {
-      const textData = await response.text();
       data = { message: textData };
     }
 
@@ -50,4 +50,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
