@@ -17,23 +17,21 @@ export async function POST(request: NextRequest) {
       }),
     });
 
-    const data = await response.json();
-    
-    console.log("Respuesta del backend:", {
-      status: response.status,
-      ok: response.ok,
-      data: data
-    });
+    let data;
+    const textData = await response.text();
+    try {
+      data = JSON.parse(textData);
+    } catch (jsonError) {
+      data = { message: textData };
+    }
 
     if (response.ok) {
-      // Registro exitoso
       return NextResponse.json({
         success: true,
         message: data.message || "Registro exitoso",
         ...data,
       });
     } else {
-      // Error en el registro
       return NextResponse.json(
         { 
           success: false,
@@ -43,7 +41,7 @@ export async function POST(request: NextRequest) {
       );
     }
   } catch (error) {
-    console.error("Error en registro:", error);
+    console.error("Error en el registro:", error);
     return NextResponse.json(
       { 
         success: false,
@@ -52,4 +50,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
