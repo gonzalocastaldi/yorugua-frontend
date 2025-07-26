@@ -4,8 +4,6 @@ export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
 
-    console.log("Enviando registro al backend:", { username });
-
     const response = await fetch("https://yorugua-backend-production.up.railway.app/api/v1/users/register", {
       method: "POST",
       headers: {
@@ -41,7 +39,6 @@ export async function POST(request: NextRequest) {
       );
     }
   } catch (error) {
-    console.error("Error en el registro:", error);
     return NextResponse.json(
       { 
         success: false,
